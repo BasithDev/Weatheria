@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Droplets, Wind, Gauge, Thermometer, MapPin, Loader, AlertTriangle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Droplets, Wind, Gauge, Thermometer, MapPin, Loader } from 'lucide-react';
 import Image from 'next/image';
 import { WeatherData, ForecastData } from '@/lib/types';
 

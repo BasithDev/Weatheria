@@ -39,8 +39,12 @@ export default function Home() {
           if (!forecastResponse.ok) throw new Error(forecastData.error || 'Failed to fetch local forecast.');
           setLocalForecast(forecastData);
 
-        } catch (err: any) {
-          setLocalError(err.message);
+        } catch (err: unknown) {
+          if (err instanceof Error) {
+            setLocalError(err.message);
+          } else {
+            setLocalError('An unknown error occurred while fetching local weather.');
+          }
         } finally {
           setLocalLoading(false);
         }
@@ -74,8 +78,12 @@ export default function Home() {
         if (!forecastResponse.ok) throw new Error(forecastData.error || 'Failed to fetch forecast.');
         setSearchedForecast(forecastData);
       }
-    } catch (err: any) {
-      setSearchError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setSearchError(err.message);
+      } else {
+        setSearchError('An unknown error occurred during the search.');
+      }
     } finally {
       setSearchLoading(false);
     }

@@ -15,7 +15,7 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
   const [suggestions, setSuggestions] = useState<CitySuggestion[]>([]);
   const [isSuggestionsLoading, setSuggestionsLoading] = useState(false);
 
-  const fetchSuggestions = async (query: string) => {
+  const fetchSuggestions = useCallback(async (query: string) => {
     if (query.length < 3) {
       setSuggestions([]);
       return;
@@ -35,9 +35,9 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
     } finally {
       setSuggestionsLoading(false);
     }
-  };
+  }, []);
 
-  const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
+  const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), [fetchSuggestions]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

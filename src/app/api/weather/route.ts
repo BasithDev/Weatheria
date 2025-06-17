@@ -40,6 +40,6 @@ export async function GET(request: Request) {
 
     return NextResponse.json(formatted);
   } catch (err) {
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return NextResponse.json({ error: err }, { status: 500 });
   }
 }
